@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,8 @@ import { ManageCompanyComponent } from './manage-company/manage-company.componen
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { LoginPageComponent } from './login-page/login-page.component'
 import { CompanyDetailService } from './shared/company-detail.service';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -23,17 +28,19 @@ import { CompanyDetailService } from './shared/company-detail.service';
     ImportDataComponent,
     ManageCompanyComponent,
     CreateCompanyComponent,
-    LoginPageComponent
-    
+    LoginPageComponent,
+    UserRegisterComponent,    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [CompanyDetailService],
+  providers: [CompanyDetailService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
