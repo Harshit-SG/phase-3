@@ -19,6 +19,14 @@ import { LoginPageComponent } from './login-page/login-page.component'
 import { CompanyDetailService } from './shared/company-detail.service';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserService } from './shared/user.service';
+import { CompareCompanyComponent } from './compare-company/compare-company.component';
+
+import { FusionChartsModule } from 'angular2-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+// Import FusionCharts Charts module
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +37,8 @@ import { UserService } from './shared/user.service';
     ManageCompanyComponent,
     CreateCompanyComponent,
     LoginPageComponent,
-    UserRegisterComponent,    
+    UserRegisterComponent,
+    CompareCompanyComponent,    
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { UserService } from './shared/user.service';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FusionChartsModule.forRoot(FusionCharts, Charts)
   ],
   providers: [CompanyDetailService, UserService],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@
                 <a style="margin-right: 100px; margin-left: 100px;" class="nav-link" aria-current="page" href="#">IPOs</a>
             </li>
             <li class="nav-item">
-                <a style="margin-right: 100px;" class="nav-link" href="#">Compare Company</a>
+                <a style="margin-right: 100px;" routerLink="/comparecompany" class="nav-link">Compare Company</a>
             </li>
             <li class="nav-item">
                 <a style="margin-right: 100px;" class="nav-link" href="#">Compare Sectors</a>
@@ -15,4 +15,6 @@
             </li>          
         </ul>        
     </div>
+    <button class="btn btn-danger" style="float: right;" (click)="onLogout()"> Logout </button>
 </nav>
+<router-outlet></router-outlet>

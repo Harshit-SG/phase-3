@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { element } from 'protractor';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class UserService {
     Passwords : this.fb.group({
     Password :['',[Validators.required,Validators.minLength(4)]],
      ConfirmPassword :['',Validators.required]
-    },{Validators: this.comparePasswords })   
+    },{validators: this.comparePasswords })   
     
   });
 
@@ -45,5 +46,25 @@ export class UserService {
     return this.http.post(this.baseURI+'/ApplicationUser/Register',body);
   }
 
+  login(formData){
+    return this.http.post(this.baseURI+'/ApplicationUser/Login',formData);
+  }
 
+  getUserProfile(){
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.baseURI+'/UserProfile',{headers: tokenHeader});
+  }
+
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    var payLoad = JSON.parse( window.atob(localStorage.getItem('token').split('.')[1]) );
+    var userRole = payLoad.role;
+    allowedRoles.forEach(element=> {
+      if(userRole== element){
+        isMatch =true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
 }
